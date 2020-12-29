@@ -16,10 +16,7 @@
     "autoload": {
         "psr-4": {
             "Bageur\\Donasi\\": "src/"
-        },
-        "files": [
-            "app/Helpers/custom.php"
-        ]
+        }
     },
     "extra": {
         "laravel": {
