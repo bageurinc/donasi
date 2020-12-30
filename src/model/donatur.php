@@ -19,7 +19,11 @@ class donatur extends Model
     {
         $data = json_decode($this->donatur);
         $parse = [];
-        $parse['name'] = $data->donatur->nama;
+        if($this->anonim != 1){
+            $parse['name'] = $data->donatur->nama;
+        }else{
+            $parse['name'] = 'Hamba Allah';
+        }
         return $parse;
         // return $this->belongsTo(User::class, 'user_id');
     }
