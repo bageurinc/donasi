@@ -15,7 +15,8 @@ class DonaturController extends Controller
 
     public function index(Request $request)
     {
-       $query = donatur::with('campaign', 'user')->datatable($request);
+    //    $query = donatur::with('campaign', 'user')->datatable($request);
+       $query = donatur::with('campaign')->datatable($request);
        return $query;
     }
 
@@ -30,10 +31,10 @@ class DonaturController extends Controller
         }else{
             $donatur                    = new donatur;
             $donatur->nominal           = $request->nominal;
-            $donatur->pesan             = $request->pesan;
             $donatur->anonim            = $request->anonim;
             $donatur->campaign_id       = $request->campaign_id;
             $donatur->user_id           = $request->user_id;
+            $donatur->donatur           = json_encode($request->donatur);
             $donatur->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
         }
@@ -79,8 +80,8 @@ class DonaturController extends Controller
                 $donatur->user_id       = $request->user_id;
             }
             $donatur->nominal           = $request->nominal;
-            $donatur->pesan             = $request->pesan;
             $donatur->anonim            = $request->anonim;
+            $donatur->donatur           = json_encode($request->donatur);
             $donatur->status            = $request->status;
             $donatur->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
