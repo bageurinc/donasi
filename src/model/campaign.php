@@ -9,7 +9,7 @@ class campaign extends Model
 {
     protected $table = 'bgr_yayasan_campaign';
 
-    protected $appends = ['avatar','text_limit','judul_limit','target_danas','dana_terkumpul'];
+    protected $appends = ['avatar','text_limit','judul_limit','target_danas','dana_terkumpul','dana_terkumpul_raw'];
 
     public function getAvatarAttribute()
     {
@@ -17,7 +17,7 @@ class campaign extends Model
     }
 
     public function getTextLimitAttribute() {
-        return Str::words(nl2br(strip_tags($this->description)),25);
+        return Str::words(nl2br(strip_tags($this->description)),100);
     }
 
     public function getJudulLimitAttribute() {
@@ -30,6 +30,10 @@ class campaign extends Model
 
     public function getDanaTerkumpulAttribute() {
         return idr($this->campaigndonasi()->sum('nominal'));
+    }
+
+    public function getDanaTerkumpulRawAttribute() {
+        return $this->campaigndonasi()->sum('nominal');
     }
 
     public function scopeDatatable($query,$request,$page=12)
@@ -82,6 +86,6 @@ class campaign extends Model
     }
     public function campaigndonasi()
     {
-        return $this->hasMany(donatur::class, 'campaign_id');
+        return $this->hasMany(donatur::class, 'campaign_id')->where('status','aktif');
     }
 }
