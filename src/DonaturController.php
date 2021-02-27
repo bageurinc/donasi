@@ -34,7 +34,8 @@ class DonaturController extends Controller
             $donatur->anonim            = $request->anonim;
             $donatur->campaign_id       = $request->campaign_id;
             $donatur->user_id           = $request->user_id;
-            $donatur->donatur           = json_encode($request->donatur);
+            $arr                        = ['donatur' => $request->donatur];
+            $donatur->donatur           = json_encode($arr);
             $donatur->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
         }
@@ -81,7 +82,8 @@ class DonaturController extends Controller
             }
             $donatur->nominal           = $request->nominal;
             $donatur->anonim            = $request->anonim;
-            $donatur->donatur           = json_encode($request->donatur);
+            $arr                        = ['donatur' => $request->donatur];
+            $donatur->donatur           = json_encode($arr);
             $donatur->status            = $request->status;
             $donatur->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
@@ -101,4 +103,12 @@ class DonaturController extends Controller
         return response(['status' => true ,'text'    => 'deleted'], 200);
     }
 
+    public function ubahstatus(Request $request)
+    {
+         $edit         = donatur::find($request->id);
+         $edit->status = $request->status;
+         $edit->save();
+
+         return response(['status' => true, 'text'    => 'has update'], 200);
+    }
 }
