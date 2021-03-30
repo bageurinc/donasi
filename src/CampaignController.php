@@ -42,6 +42,7 @@ class CampaignController extends Controller
             $campaign->date_end         = $request->date_end;
             $campaign->lembaga_id       = $request->penerima_id;
             $campaign->penerima_id      = $request->lembaga_id;
+            $campaign->referal_setup_id = $request->referal_setup_id;
             if($request->file != null){
                 $upload                       = \Bageur::base64($request->file,'campaign');
                 $campaign->gambar             = $upload['up'];
@@ -97,6 +98,7 @@ class CampaignController extends Controller
             $campaign->date_end       = $request->date_end;
             $campaign->penerima_id       =  $request->penerima_id;
             $campaign->lembaga_id       = $request->lembaga_id;
+            $campaign->referal_setup_id = $request->referal_setup_id;
             if($request->file != null){
                 $upload                       = \Bageur::base64($request->file,'campaign');
                 $campaign->gambar             = $upload['up'];
