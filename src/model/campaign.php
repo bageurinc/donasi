@@ -29,11 +29,27 @@ class campaign extends Model
     }
 
     public function getDanaTerkumpulAttribute() {
-        return idr($this->campaigndonasi()->sum('nominal'));
+        if ($this->total_donasi == 0) {
+            $data = campaign::find($this->id);
+            $data->total_donasi = $this->campaigndonasi()->sum('nominal');
+            $data->save();
+            return idr($data->total_donasi);
+        }
+        else{
+            return idr($this->total_donasi);
+        }
     }
 
     public function getDanaTerkumpulRawAttribute() {
-        return $this->campaigndonasi()->sum('nominal');
+        if ($this->total_donasi == 0) {
+            $data = campaign::find($this->id);
+            $data->total_donasi = $this->campaigndonasi()->sum('nominal');
+            $data->save();
+            return $data->total_donasi;
+        }
+        else{
+            return $this->total_donasi;
+        }
     }
 
     public function scopeDatatable($query,$request,$page=12)
