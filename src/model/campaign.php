@@ -89,19 +89,19 @@ class campaign extends Model
     }
     public function lembaga()
     {
-        return $this->belongsTo(lembaga::class, 'lembaga_id');
+        return $this->belongsTo(\Bageur\Donasi\model\lembaga::class, 'lembaga_id');
     }
 
     public function penerima()
     {
-        return $this->belongsTo(penerima::class, 'penerima_id');
+        return $this->belongsTo(\Bageur\Donasi\model\penerima::class, 'penerima_id');
     }
     public function aktifitas()
     {
-        return $this->hasMany(aktifitas::class, 'campaign_id');
+        return $this->hasMany(\Bageur\Donasi\model\aktifitas::class, 'campaign_id');
     }
     public function campaigndonasi()
     {
-        return $this->hasMany(donatur::class, 'campaign_id')->where('status','aktif');
+        return $this->hasMany(\Bageur\Donasi\model\donatur::class, 'campaign_id')->where('status','aktif');
     }
 }

@@ -67,6 +67,6 @@ class donatur extends Model
     }
     public function campaign()
     {
-        return $this->belongsTo(campaign::class, 'campaign_id');
+        return $this->belongsTo(\Bageur\Donasi\model\campaign::class, 'campaign_id');
     }
 }

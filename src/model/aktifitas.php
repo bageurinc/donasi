@@ -63,11 +63,11 @@ class aktifitas extends Model
 
     public function campaign()
     {
-        return $this->belongsTo(campaign::class, 'campaign_id');
+        return $this->belongsTo(\Bageur\Donasi\model\campaign::class, 'campaign_id');
     }
 
     public function lembaga()
     {
-        return $this->belongsTo(lembaga::class, 'lembaga_id');
+        return $this->belongsTo(\Bageur\Donasi\model\lembaga::class, 'lembaga_id');
     }
 }

@@ -56,6 +56,6 @@ class lembaga extends Model
 
     public function campaign()
     {
-        return $this->hasMany(campaign::class);
+        return $this->hasMany(\Bageur\Donasi\model\campaign::class);
     }
 }
