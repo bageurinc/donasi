@@ -2,7 +2,7 @@
 namespace Bageur\Donasi;
 
 use App\Http\Controllers\Controller;
-use Bageur\Donasi\Model\penerima;
+use Bageur\Donasi\model\penerima;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Validator;
